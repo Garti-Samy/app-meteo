@@ -10,12 +10,12 @@
       {
         "src": "img/meteo-petite.png",
         "sizes": "192x192",
-        "type": "img/meteo-petite.png"
+        "type": "image/png"
       },
       {
         "src": "img/meteo.png",
         "sizes": "512x512",
-        "type": "image/meteo.png"
+        "type": "image/png"
       }
     ]
   }

@@ -61,11 +61,22 @@ $(document).ready(function () {
   $('#ville').val('Brussels'); // Mettre "Brussels" dans le champ input par défaut
 });
 
-
 let deferredPrompt;
 const installButton = document.createElement('button');
 installButton.style.display = 'none';
 installButton.textContent = 'Installer l\'application';
+
+// Ajout de styles CSS pour rendre le bouton visible
+installButton.style.backgroundColor = 'yellow'; // Couleur de fond jaune
+installButton.style.color = 'black'; // Couleur du texte noir
+installButton.style.padding = '10px 20px'; // Padding (espace interne)
+installButton.style.border = 'none'; // Supprime la bordure par défaut
+installButton.style.borderRadius = '5px'; // Coins arrondis
+installButton.style.cursor = 'pointer'; // Curseur en mode clic
+installButton.style.fontSize = '16px'; // Taille de la police
+installButton.style.fontWeight = 'bold'; // Texte en gras
+installButton.style.bottom = '20px'; // Position verticale (à 20px du bas)
+installButton.style.right = '20px'; // Position horizontale (à 20px de la droite)
 
 // Détection si l'installation est possible
 window.addEventListener('beforeinstallprompt', (e) => {
