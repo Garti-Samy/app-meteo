@@ -75,8 +75,8 @@ installButton.style.borderRadius = '5px'; // Coins arrondis
 installButton.style.cursor = 'pointer'; // Curseur en mode clic
 installButton.style.fontSize = '16px'; // Taille de la police
 installButton.style.fontWeight = 'bold'; // Texte en gras
-installButton.style.bottom = '20px'; // Position verticale (à 20px du bas)
 installButton.style.right = '20px'; // Position horizontale (à 20px de la droite)
+installButton.style.marginTop = '20px'; // Ajouter une marge au-dessus du bouton
 
 // Détection si l'installation est possible
 window.addEventListener('beforeinstallprompt', (e) => {

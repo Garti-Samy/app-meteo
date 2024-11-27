@@ -606,10 +606,6 @@ video {
   margin-top: 1.75rem;
 }
 
-.mt-8{
-  margin-top: 2rem;
-}
-
 .mt-9{
   margin-top: 2.25rem;
 }
@@ -662,18 +658,6 @@ video {
   height: 100vh;
 }
 
-.h-1\/5{
-  height: 20%;
-}
-
-.h-2{
-  height: 0.5rem;
-}
-
-.h-2\/3{
-  height: 66.666667%;
-}
-
 .min-h-screen{
   min-height: 100vh;
 }
@@ -716,14 +700,6 @@ video {
 
 .gap-4{
   gap: 1rem;
-}
-
-.gap-8{
-  gap: 2rem;
-}
-
-.gap-6{
-  gap: 1.5rem;
 }
 
 .rounded-lg{
@@ -797,3 +773,4 @@ video {
 .filter{
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
+
