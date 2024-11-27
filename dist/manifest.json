@@ -1,0 +1,21 @@
+{
+    "name": "Mon Application PWA",
+    "short_name": "App Meteo",
+    "description": "Application meteo mobile",
+    "start_url": "/",
+    "display": "fullscreen",
+    "background_color": "#ffffff",
+    "theme_color": "#000000",
+    "icons": [
+      {
+        "src": "img/meteo-petite.png",
+        "sizes": "192x192",
+        "type": "img/meteo-petite.png"
+      },
+      {
+        "src": "img/meteo.png",
+        "sizes": "512x512",
+        "type": "image/meteo.png"
+      }
+    ]
+  }
