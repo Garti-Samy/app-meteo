@@ -2,6 +2,7 @@ const CACHE_NAME = 'mon-pwa-cache-v1';
 const assetsToCache = [
   '/',
   '/index.html',
+  '/css/input.css',
   '/css/style.css',
   '/js/app.js'
 ];
