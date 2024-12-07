@@ -9,6 +9,7 @@ $(document).ready(function () {
       url: url,
       dataType: 'json',
       success: function (data) {
+        console.log(data)
         const dayOfWeek = new Date().toLocaleDateString('fr-FR', { weekday: 'long' });
         const capitalizedDayOfWeek = dayOfWeek.charAt(0).toUpperCase() + dayOfWeek.slice(1);
         $('#jour').text(capitalizedDayOfWeek);
@@ -16,6 +17,7 @@ $(document).ready(function () {
         $('#date').text(date.getDate());
         $('#datelongue').text(date.toLocaleDateString('fr-FR', { month: 'short', year: 'numeric' }));
         $('#temperature').text(`${data.current.temp_c}°C`);
+        $('#feel').text(`${data.current.feelslike_c}°C`);
         $('#conditions').text(data.current.condition.text);
         $('#iconday').attr('src', `img/${data.current.condition.icon.split('/').pop().split('.')[0]}.svg`);
 
