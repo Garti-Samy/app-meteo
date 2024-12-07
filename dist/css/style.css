@@ -594,12 +594,24 @@ video {
   margin-bottom: 0.5rem;
 }
 
-.mb-12{
-  margin-bottom: 3rem;
+.mb-16{
+  margin-bottom: 4rem;
+}
+
+.mb-9{
+  margin-bottom: 2.25rem;
+}
+
+.mr-20{
+  margin-right: 5rem;
 }
 
 .mt-14{
   margin-top: 3.5rem;
+}
+
+.mt-5{
+  margin-top: 1.25rem;
 }
 
 .mt-7{
@@ -610,8 +622,20 @@ video {
   margin-top: 2.25rem;
 }
 
-.mt-5{
-  margin-top: 1.25rem;
+.mb-8{
+  margin-bottom: 2rem;
+}
+
+.mb-6{
+  margin-bottom: 1.5rem;
+}
+
+.mb-14{
+  margin-bottom: 3.5rem;
+}
+
+.mb-12{
+  margin-bottom: 3rem;
 }
 
 .box-border{
@@ -670,12 +694,28 @@ video {
   width: 33.333333%;
 }
 
-.w-10\/12{
-  width: 83.333333%;
-}
-
 .w-11\/12{
   width: 91.666667%;
+}
+
+.w-40{
+  width: 10rem;
+}
+
+.w-1\/2{
+  width: 50%;
+}
+
+.w-48{
+  width: 12rem;
+}
+
+.w-5{
+  width: 1.25rem;
+}
+
+.w-56{
+  width: 14rem;
 }
 
 .cursor-pointer{
@@ -690,6 +730,10 @@ video {
   flex-direction: column;
 }
 
+.items-end{
+  align-items: flex-end;
+}
+
 .items-center{
   align-items: center;
 }
@@ -700,10 +744,6 @@ video {
 
 .justify-around{
   justify-content: space-around;
-}
-
-.gap-2{
-  gap: 0.5rem;
 }
 
 .gap-4{
@@ -742,13 +782,21 @@ video {
   background-color: rgb(250 204 21 / var(--tw-bg-opacity, 1));
 }
 
+.object-contain{
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
 .p-2{
   padding: 0.5rem;
 }
 
-.py-4{
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+.p-10{
+  padding: 2.5rem;
+}
+
+.p-8{
+  padding: 2rem;
 }
 
 .px-5{
@@ -759,6 +807,11 @@ video {
 .py-2{
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+}
+
+.py-4{
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .pb-4{
@@ -773,14 +826,17 @@ video {
   text-align: center;
 }
 
+.text-right{
+  text-align: right;
+}
+
+.text-end{
+  text-align: end;
+}
+
 .text-3xl{
   font-size: 1.875rem;
   line-height: 2.25rem;
-}
-
-.text-xl{
-  font-size: 1.25rem;
-  line-height: 1.75rem;
 }
 
 .text-lg{
@@ -788,22 +844,27 @@ video {
   line-height: 1.75rem;
 }
 
-.font-thin{
-  font-weight: 100;
+.text-xl{
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 }
 
 .font-bold{
   font-weight: 700;
 }
 
-.text-white{
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+.font-normal{
+  font-weight: 400;
 }
 
 .text-black{
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity, 1));
+}
+
+.text-white{
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
 .blur{
