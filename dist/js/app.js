@@ -2,6 +2,9 @@ $(document).ready(function () {
   // Variable pour stocker le timeout
   let timeout;
 
+  // Variable pour stocker le prompt d'installation (PWA)
+  let deferredPrompt;
+
   // Fonction pour appeler l'API et mettre à jour l'interface
   function fetchWeather(ville) {
     const apiKey = 'ab8885ca5629418dbcf123332241911';
@@ -106,6 +109,28 @@ $(document).ready(function () {
 
   // Appeler la fonction pour gérer les appareils mobiles
   handleDevice();
+
+  // Gérer l'installation de l'application PWA
+  window.addEventListener('beforeinstallprompt', (e) => {
+    // Empêcher l'affichage du prompt d'installation par défaut
+    e.preventDefault();
+    deferredPrompt = e;
+    // Afficher le bouton d'installation
+    $('#installAppButton').show();
+  });
+
+  // Écouter le clic sur le bouton d'installation
+  $('#installAppButton').on('click', async () => {
+    // Afficher le prompt d'installation
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const result = await deferredPrompt.userChoice;
+      console.log(`Résultat d'installation: ${result.outcome}`);
+      deferredPrompt = null;
+      $('#installAppButton').hide(); // Masquer le bouton après l'installation
+    }
+  });
+
 });
 
 // Fonction pour récupérer les coordonnées GPS et afficher la météo correspondante
