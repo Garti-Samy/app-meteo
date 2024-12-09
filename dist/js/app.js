@@ -88,26 +88,38 @@ $(document).ready(function () {
     }
   }
 
-  // Fonction pour détecter iOS
-  function isIOS() {
-    return (
-      /iPad|iPhone|iPod/.test(navigator.userAgent) ||
-      (navigator.userAgent.includes("Macintosh") && 'ontouchend' in document)
-    );
+  // MobileDetect configuration
+  const md = new MobileDetect(window.navigator.userAgent);
+
+  // Fonction pour gérer les appareils mobiles
+  function handleMobileDevice() {
+    if (md.mobile()) {
+      alert('Mobile device detected');
+
+      if (md.is('iOS')) {
+        alert('iOS device');
+        $('#iosbutton').removeClass('hidden').show();
+        $('#installAppButton').hide();
+      } else if (md.is('AndroidOS')) {
+        alert('Android device');
+        $('#installAppButton').removeClass('hidden').show();
+        $('#iosbutton').hide();
+      }
+
+      if (md.tablet()) {
+        alert('This is a tablet');
+      } else if (md.phone()) {
+        alert('This is a phone');
+      }
+    } else {
+      // Desktop
+      $('#installAppButton').hide();
+      $('#iosbutton').hide();
+    }
   }
 
-  // Affichage conditionnel des boutons
-  if (isIOS()) {
-    $('#iosbutton').removeClass('hidden').show();
-    $('#installAppButton').hide();
-  } else if (/Android/.test(navigator.userAgent)) {
-    $('#installAppButton').removeClass('hidden').show();
-    $('#iosbutton').hide();
-  } else {
-    // Ni Android ni iOS : cacher les deux boutons
-    $('#installAppButton').hide();
-    $('#iosbutton').hide();
-  }
+  // Exécuter la détection des appareils
+  handleMobileDevice();
 
   // Écouteur sur le champ input pour détecter les changements dynamiques
   $('#ville').on('input', function () {
