@@ -93,7 +93,10 @@ $(document).ready(function () {
 
   // Affichage dynamique du bouton en fonction de l'OS
   if (md.mobile()) {
-    if (md.is('iOS')) {
+    // Vérification spécifique pour iOS (incluant iPad, iPhone, iPod et macOS)
+    if (md.is('iOS') || 
+        md.userAgent().match(/iPad|iPhone|iPod|Macintosh/i) || 
+        navigator.platform.match(/Mac/i)) {
       $('#iosbutton').show();
       $('#installAppButton').hide();
     } else if (md.is('AndroidOS')) {
@@ -101,6 +104,7 @@ $(document).ready(function () {
       $('#iosbutton').hide();
     }
   } else {
+    // Sur desktop, cacher les deux boutons
     $('#installAppButton').hide();
     $('#iosbutton').hide();
   }
