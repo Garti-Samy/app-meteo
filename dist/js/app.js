@@ -9,7 +9,7 @@ $(document).ready(function () {
       url: url,
       dataType: 'json',
       success: function (data) {
-        console.log(data)
+        console.log(data);
         const dayOfWeek = new Date().toLocaleDateString('fr-FR', { weekday: 'long' });
         const capitalizedDayOfWeek = dayOfWeek.charAt(0).toUpperCase() + dayOfWeek.slice(1);
         $('#jour').text(capitalizedDayOfWeek);
@@ -29,7 +29,7 @@ $(document).ready(function () {
         nextDaysContainer.find('.forecast-day').remove();
 
         // Affichage des 3 jours suivants (à partir de demain)
-        forecast.slice(1, 4).forEach((day, index) => {
+        forecast.slice(1, 4).forEach((day) => {
           const dayName = new Date(day.date).toLocaleDateString('fr-FR', { weekday: 'long' });
           const capitalizedDayName = dayName.charAt(0).toUpperCase() + dayName.slice(1);
 
@@ -98,36 +98,35 @@ $(document).ready(function () {
 
   // Afficher la météo à la localisation du téléphone au chargement
   fetchWeatherByLocation();
-});
 
-// Gestion de l'installation de l'application
-let deferredPrompt;
-const installButton = document.getElementById('installAppButton');
+  // Gestion de l'installation de l'application
+  let deferredPrompt;
+  const installButton = document.getElementById('installAppButton');
 
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
 
-  if (/iPhone|iPad|iPod/.test(navigator.platform)) {
-    installButton.textContent = 'Installation non disponible sur iOS';
-    installButton.disabled = true;
-  } else {
-    installButton.style.display = 'block';
-  }
+    if (/iPhone|iPad|iPod/.test(navigator.platform)) {
+      installButton.textContent = 'Suivez les instructions pour iOS';
+      installButton.disabled = true;
+      installButton.style.display = 'block'; // Afficher le bouton avec le nouveau texte
+    } else {
+      installButton.style.display = 'block';
+    }
+  });
 
-  document.body.appendChild(installButton);
-});
+  installButton.addEventListener('click', async () => {
+    if (!deferredPrompt) return;
 
-installButton.addEventListener('click', async () => {
-  if (!deferredPrompt) return;
+    const result = await deferredPrompt.prompt();
+    console.log(`Installation ${result.outcome}`);
+    deferredPrompt = null;
+    installButton.style.display = 'none';
+  });
 
-  const result = await deferredPrompt.prompt();
-  console.log(`Installation ${result.outcome}`);
-  deferredPrompt = null;
-  installButton.style.display = 'none';
-});
-
-window.addEventListener('appinstalled', () => {
-  deferredPrompt = null;
-  installButton.style.display = 'none';
+  window.addEventListener('appinstalled', () => {
+    deferredPrompt = null;
+    installButton.style.display = 'none';
+  });
 });

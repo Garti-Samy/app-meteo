@@ -594,12 +594,8 @@ video {
   margin-bottom: 0.5rem;
 }
 
-.mb-16{
-  margin-bottom: 4rem;
-}
-
-.mb-9{
-  margin-bottom: 2.25rem;
+.mb-12{
+  margin-bottom: 3rem;
 }
 
 .mr-20{
@@ -622,20 +618,24 @@ video {
   margin-top: 2.25rem;
 }
 
+.mb-16{
+  margin-bottom: 4rem;
+}
+
+.mb-10{
+  margin-bottom: 2.5rem;
+}
+
 .mb-8{
   margin-bottom: 2rem;
 }
 
+.mb-9{
+  margin-bottom: 2.25rem;
+}
+
 .mb-6{
   margin-bottom: 1.5rem;
-}
-
-.mb-14{
-  margin-bottom: 3.5rem;
-}
-
-.mb-12{
-  margin-bottom: 3rem;
 }
 
 .box-border{
@@ -828,10 +828,6 @@ video {
 
 .text-right{
   text-align: right;
-}
-
-.text-end{
-  text-align: end;
 }
 
 .text-3xl{
