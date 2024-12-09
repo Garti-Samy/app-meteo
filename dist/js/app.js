@@ -88,23 +88,23 @@ $(document).ready(function () {
     }
   }
 
-  // Utilisation de Mobile-Detect pour détecter l'OS et l'appareil
-  const md = new MobileDetect(window.navigator.userAgent);
+  // Fonction pour détecter iOS
+  function isIOS() {
+    return (
+      /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+      (navigator.userAgent.includes("Macintosh") && 'ontouchend' in document)
+    );
+  }
 
-  // Affichage dynamique du bouton en fonction de l'OS
-  if (md.mobile()) {
-    // Vérification spécifique pour iOS (incluant iPad, iPhone, iPod et macOS)
-    if (md.is('iOS') || 
-        md.userAgent().match(/iPad|iPhone|iPod|Macintosh/i) || 
-        navigator.platform.match(/Mac/i)) {
-      $('#iosbutton').show();
-      $('#installAppButton').hide();
-    } else if (md.is('AndroidOS')) {
-      $('#installAppButton').show();
-      $('#iosbutton').hide();
-    }
+  // Affichage conditionnel des boutons
+  if (isIOS()) {
+    $('#iosbutton').removeClass('hidden').show();
+    $('#installAppButton').hide();
+  } else if (/Android/.test(navigator.userAgent)) {
+    $('#installAppButton').removeClass('hidden').show();
+    $('#iosbutton').hide();
   } else {
-    // Sur desktop, cacher les deux boutons
+    // Ni Android ni iOS : cacher les deux boutons
     $('#installAppButton').hide();
     $('#iosbutton').hide();
   }
