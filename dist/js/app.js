@@ -88,6 +88,37 @@ $(document).ready(function () {
     }
   }
 
+  // Fonction pour détecter l'OS
+  function detectOS() {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+    // Détection d'iOS
+    if (/iPhone|iPad|iPod/i.test(userAgent)) {
+      return 'ios';
+    }
+
+    // Détection d'Android
+    if (/android/i.test(userAgent)) {
+      return 'android';
+    }
+
+    return 'other';
+  }
+
+  // Affichage dynamique du bouton en fonction de l'OS
+  const os = detectOS();
+
+  if (os === 'ios') {
+    $('#iosbutton').show();
+    $('#installAppButton').hide();
+  } else if (os === 'android') {
+    $('#installAppButton').show();
+    $('#iosbutton').hide();
+  } else {
+    $('#installAppButton').hide();
+    $('#iosbutton').hide();
+  }
+
   // Écouteur sur le champ input pour détecter les changements dynamiques
   $('#ville').on('input', function () {
     const ville = $(this).val().trim(); // Récupération de la ville
