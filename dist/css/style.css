@@ -622,6 +622,10 @@ video {
   margin-top: 2.25rem;
 }
 
+.mb-4{
+  margin-bottom: 1rem;
+}
+
 .box-border{
   box-sizing: border-box;
 }
@@ -821,6 +825,11 @@ video {
 .text-xl{
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+.text-2xl{
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 
 .font-bold{

@@ -1,4 +1,7 @@
 $(document).ready(function () {
+  // Variable pour stocker le timeout
+  let timeout;
+
   // Fonction pour appeler l'API et mettre à jour l'interface
   function fetchWeather(ville) {
     const apiKey = 'ab8885ca5629418dbcf123332241911';
@@ -20,6 +23,9 @@ $(document).ready(function () {
         $('#feel').text(`${data.current.feelslike_c}°C`);
         $('#conditions').text(data.current.condition.text);
         $('#iconday').attr('src', `img/${data.current.condition.icon.split('/').pop().split('.')[0]}.svg`);
+
+        // Mise à jour du nom de la ville
+        $('#villeNom').text(`Météo à : ${data.location.name}`);
 
         // Mise à jour des prévisions pour les jours suivants
         const forecast = data.forecast.forecastday;
@@ -46,113 +52,73 @@ $(document).ready(function () {
 
           nextDaysContainer.append(dayHtml);
         });
+
+        // Effacer l'input après avoir récupéré et affiché les données
+        $('#ville').val('');
       },
+      error: function() {
+        // Gestion des erreurs (par exemple, si la ville est invalide)
+        alert('La ville n\'a pas pu être trouvée. Veuillez essayer avec un autre nom.');
+      }
     });
   }
 
-  // Fonction pour récupérer les coordonnées GPS et afficher la météo correspondante
-  function fetchWeatherByLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const latitude = position.coords.latitude;
-          const longitude = position.coords.longitude;
-          const location = `${latitude},${longitude}`;
-          fetchWeather(location);
-
-          // Mettre à jour le champ input avec le nom de la ville
-          const apiKey = 'ab8885ca5629418dbcf123332241911';
-          const reverseGeocodeUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}&aqi=no`;
-
-          $.ajax({
-            type: 'GET',
-            url: reverseGeocodeUrl,
-            dataType: 'json',
-            success: function (data) {
-              $('#ville').val(data.location.name);
-            },
-          });
-        },
-        (error) => {
-          console.error('Erreur de géolocalisation:', error);
-          // En cas d'erreur, afficher la météo de Bruxelles par défaut
-          fetchWeather('Brussels');
-          $('#ville').val('Brussels');
-        }
-      );
-    } else {
-      console.error('Géolocalisation non prise en charge par ce navigateur.');
-      // Afficher la météo de Bruxelles par défaut
-      fetchWeather('Brussels');
-      $('#ville').val('Brussels');
-    }
-  }
-
-  // MobileDetect configuration
-  const md = new MobileDetect(window.navigator.userAgent);
-
-  // Fonction pour gérer les appareils mobiles
-  function handleMobileDevice() {
-    if (md.mobile()) {
-      alert('Mobile device detected');
-
-      if (md.is('iOS')) {
-        alert('iOS device');
-        $('#iosbutton').removeClass('hidden').show();
-        $('#installAppButton').hide();
-      } else if (md.is('AndroidOS')) {
-        alert('Android device');
-        $('#installAppButton').removeClass('hidden').show();
-        $('#iosbutton').hide();
-      }
-
-      if (md.tablet()) {
-        alert('This is a tablet');
-      } else if (md.phone()) {
-        alert('This is a phone');
-      }
-    } else {
-      // Desktop
-      $('#installAppButton').hide();
-      $('#iosbutton').hide();
-    }
-  }
-
-  // Exécuter la détection des appareils
-  handleMobileDevice();
-
-  // Écouteur sur le champ input pour détecter les changements dynamiques
+  // Fonction pour gérer l'événement de saisie dans l'input
   $('#ville').on('input', function () {
     const ville = $(this).val().trim(); // Récupération de la ville
+
+    // On annule le précédent délai si une nouvelle touche est pressée avant 500ms
+    clearTimeout(timeout);
+
     if (ville) {
-      fetchWeather(ville); // Appel à la fonction de récupération météo
+      // On attend 500ms après la dernière frappe avant d'appeler la fonction fetchWeather
+      timeout = setTimeout(function() {
+        fetchWeather(ville); // Appel à la fonction de récupération météo
+      }, 500); // Délai de 500ms
     }
   });
 
   // Afficher la météo à la localisation du téléphone au chargement
   fetchWeatherByLocation();
+
+  // Afficher la météo de Bruxelles si la géolocalisation échoue ou si aucune ville n'est donnée
+  fetchWeather('Brussels');
 });
 
-// Gestion de l'installation de l'application
-let deferredPrompt;
-const installButton = document.getElementById('installAppButton');
+// Fonction pour récupérer les coordonnées GPS et afficher la météo correspondante
+function fetchWeatherByLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+        const location = `${latitude},${longitude}`;
+        fetchWeather(location);
 
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  installButton.style.display = 'block';
-});
+        // Mettre à jour le champ input avec le nom de la ville
+        const apiKey = 'ab8885ca5629418dbcf123332241911';
+        const reverseGeocodeUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}&aqi=no`;
 
-installButton.addEventListener('click', async () => {
-  if (!deferredPrompt) return;
-
-  const result = await deferredPrompt.prompt();
-  console.log(`Installation ${result.outcome}`);
-  deferredPrompt = null;
-  installButton.style.display = 'none';
-});
-
-window.addEventListener('appinstalled', () => {
-  deferredPrompt = null;
-  installButton.style.display = 'none';
-});
+        $.ajax({
+          type: 'GET',
+          url: reverseGeocodeUrl,
+          dataType: 'json',
+          success: function (data) {
+            $('#ville').val(data.location.name);
+          },
+        });
+      },
+      (error) => {
+        console.error('Erreur de géolocalisation:', error);
+        // En cas d'erreur, afficher la météo de Bruxelles par défaut
+        fetchWeather('Brussels');
+        $('#ville').val('Brussels');
+      }
+    );
+  } else {
+    console.error('Géolocalisation non prise en charge par ce navigateur.');
+    // Afficher la météo de Bruxelles par défaut
+    fetchWeather('Brussels');
+    $('#ville').val('Brussels');
+  }
+}
