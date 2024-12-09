@@ -55,9 +55,6 @@ $(document).ready(function () {
 
           nextDaysContainer.append(dayHtml);
         });
-
-        // Effacer l'input après avoir récupéré et affiché les données
-        $('#ville').val('');
       },
       error: function() {
         // Gestion des erreurs (par exemple, si la ville est invalide)
@@ -76,8 +73,20 @@ $(document).ready(function () {
     if (ville) {
       // On attend 500ms après la dernière frappe avant d'appeler la fonction fetchWeather
       timeout = setTimeout(function() {
-        fetchWeather(ville); // Appel à la fonction de récupération météo
+        // N'appeler fetchWeather que si c'est une nouvelle recherche (i.e., ville n'est pas vide)
+        fetchWeather(ville);
       }, 500); // Délai de 500ms
+    }
+  });
+
+  // Ajouter un écouteur d'événements pour la touche "Enter"
+  $('#ville').on('keypress', function (e) {
+    if (e.key === 'Enter') {
+      const ville = $(this).val().trim(); // Récupération de la ville
+      if (ville) {
+        fetchWeather(ville); // Appel de la fonction pour afficher la météo
+        $('#villeNom').text(`Météo à : ${ville}`); // Afficher le nom de la ville
+      }
     }
   });
 
