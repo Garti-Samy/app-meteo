@@ -83,6 +83,29 @@ $(document).ready(function () {
 
   // Afficher la météo de Bruxelles si la géolocalisation échoue ou si aucune ville n'est donnée
   fetchWeather('Brussels');
+
+  // Fonction pour afficher/masquer les boutons en fonction du type de périphérique
+  function handleDevice() {
+    const md = new MobileDetect(window.navigator.userAgent);
+
+    if (md.mobile()) {
+      // Si mobile, afficher le bouton d'installation (Android ou iOS)
+      if (md.is('iOS')) {
+        $('#iosbutton').removeClass('hidden').show();
+        $('#installAppButton').hide();
+      } else if (md.is('AndroidOS')) {
+        $('#installAppButton').removeClass('hidden').show();
+        $('#iosbutton').hide();
+      }
+    } else {
+      // Si desktop, cacher les boutons d'installation
+      $('#installAppButton').hide();
+      $('#iosbutton').hide();
+    }
+  }
+
+  // Appeler la fonction pour gérer les appareils mobiles
+  handleDevice();
 });
 
 // Fonction pour récupérer les coordonnées GPS et afficher la météo correspondante
