@@ -98,35 +98,28 @@ $(document).ready(function () {
 
   // Afficher la météo à la localisation du téléphone au chargement
   fetchWeatherByLocation();
+});
 
-  // Gestion de l'installation de l'application
-  let deferredPrompt;
-  const installButton = document.getElementById('installAppButton');
+// Gestion de l'installation de l'application
+let deferredPrompt;
+const installButton = document.getElementById('installAppButton');
 
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  installButton.style.display = 'block';
+});
 
-    if (/iPhone|iPad|iPod/.test(navigator.platform)) {
-      installButton.textContent = 'Suivez les instructions pour iOS';
-      installButton.disabled = true;
-      installButton.style.display = 'block'; // Afficher le bouton avec le nouveau texte
-    } else {
-      installButton.style.display = 'block';
-    }
-  });
+installButton.addEventListener('click', async () => {
+  if (!deferredPrompt) return;
 
-  installButton.addEventListener('click', async () => {
-    if (!deferredPrompt) return;
+  const result = await deferredPrompt.prompt();
+  console.log(`Installation ${result.outcome}`);
+  deferredPrompt = null;
+  installButton.style.display = 'none';
+});
 
-    const result = await deferredPrompt.prompt();
-    console.log(`Installation ${result.outcome}`);
-    deferredPrompt = null;
-    installButton.style.display = 'none';
-  });
-
-  window.addEventListener('appinstalled', () => {
-    deferredPrompt = null;
-    installButton.style.display = 'none';
-  });
+window.addEventListener('appinstalled', () => {
+  deferredPrompt = null;
+  installButton.style.display = 'none';
 });
