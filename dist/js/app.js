@@ -5,9 +5,10 @@ $(document).ready(function () {
   // Variable pour stocker le prompt d'installation (PWA)
   let deferredPrompt;
 
+  const apiKey = 'ab8885ca5629418dbcf123332241911';
+
   // Fonction pour appeler l'API et mettre à jour l'interface
   function fetchWeather(ville) {
-    const apiKey = 'ab8885ca5629418dbcf123332241911';
     const url = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${ville}&days=4&aqi=no&alerts=no`;
 
     $.ajax({
@@ -155,7 +156,6 @@ function fetchWeatherByLocation() {
         fetchWeather(location);
 
         // Mettre à jour le champ input avec le nom de la ville
-        const apiKey = 'ab8885ca5629418dbcf123332241911';
         const reverseGeocodeUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}&aqi=no`;
 
         $.ajax({

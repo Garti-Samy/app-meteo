@@ -580,6 +580,10 @@ video {
   left: 12rem;
 }
 
+.top-4{
+  top: 1rem;
+}
+
 .m-4{
   margin: 1rem;
 }
@@ -614,6 +618,10 @@ video {
   margin-top: 3.5rem;
 }
 
+.mt-4{
+  margin-top: 1rem;
+}
+
 .mt-5{
   margin-top: 1.25rem;
 }
@@ -624,6 +632,10 @@ video {
 
 .mt-9{
   margin-top: 2.25rem;
+}
+
+.mt-8{
+  margin-top: 2rem;
 }
 
 .box-border{
@@ -670,6 +682,10 @@ video {
   height: 75%;
 }
 
+.h-auto{
+  height: auto;
+}
+
 .h-screen{
   height: 100vh;
 }
@@ -692,6 +708,10 @@ video {
 
 .w-56{
   width: 14rem;
+}
+
+.w-auto{
+  width: auto;
 }
 
 .cursor-pointer{
