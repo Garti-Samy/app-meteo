@@ -56,10 +56,6 @@ $(document).ready(function () {
           nextDaysContainer.append(dayHtml);
         });
       },
-      error: function() {
-        // Gestion des erreurs (par exemple, si la ville est invalide)
-        alert('La ville n\'a pas pu être trouvée. Veuillez essayer avec un autre nom.');
-      }
     });
   }
 
