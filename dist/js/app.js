@@ -59,6 +59,12 @@ $(document).ready(function () {
     });
   }
 
+
+   // Gestion du bouton iOS
+   $('#iosbutton').on('click', function () {
+    $('#imageContainer').toggleClass('hidden'); // Afficher/masquer l'image
+  });
+
   // Fonction pour gérer l'événement de saisie dans l'input
   $('#ville').on('input', function () {
     const ville = $(this).val().trim(); // Récupération de la ville
@@ -77,7 +83,7 @@ $(document).ready(function () {
 
   // Ajouter un écouteur d'événements pour la touche "Enter"
   $('#ville').on('keypress', function (e) {
-    if (e.key === 'Enter') {
+    if (e.key === 13) {
       const ville = $(this).val().trim(); // Récupération de la ville
       if (ville) {
         fetchWeather(ville); // Appel de la fonction pour afficher la météo
