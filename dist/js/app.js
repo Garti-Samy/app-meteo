@@ -29,10 +29,10 @@ $(document).ready(function () {
         $('#iconday').attr('src', `img/${data.current.condition.icon.split('/').pop().split('.')[0]}.svg`);
 
         // Mise à jour du nom de la ville
-        $('#villeNom').text(`Météo à : ${data.location.name}`);
+        $('#villeNom').text(`${data.location.name}`);
         console.log(data)
 
-        $('#pays').text(`Pays: ${data.location.country}`)
+        $('#pays').text(`${data.location.country}`)
 
         // Mise à jour des prévisions pour les jours suivants
         const forecast = data.forecast.forecastday;
@@ -90,8 +90,8 @@ $(document).ready(function () {
     if (e.key === 13) {
       const ville = $(this).val().trim(); // Récupération de la ville
       if (ville) {
-        fetchWeather(ville); // Appel de la fonction pour afficher la météo
-        $('#villeNom').text(`Météo à : ${ville}`); // Afficher le nom de la ville
+        fetchWeather(ville);
+        $('#villeNom').text(` ${ville}`);
       }
     }
   });
@@ -107,6 +107,7 @@ $(document).ready(function () {
     const md = new MobileDetect(window.navigator.userAgent);
 
     if (md.mobile()) {
+      
       // Si mobile, afficher le bouton d'installation (Android ou iOS)
       if (md.is('iOS')) {
         $('#iosbutton').removeClass('hidden').show();
