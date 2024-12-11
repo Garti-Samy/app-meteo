@@ -4,7 +4,6 @@ $(document).ready(function () {
 
   // Variable pour stocker le prompt d'installation (PWA)
   let deferredPrompt;
-
   const apiKey = 'ab8885ca5629418dbcf123332241911';
 
   // Fonction pour appeler l'API et mettre à jour l'interface
@@ -64,8 +63,8 @@ $(document).ready(function () {
   }
 
 
-   // Gestion du bouton iOS
-   $('#iosbutton').on('click', function () {
+  // Gestion du bouton iOS
+  $('#iosbutton').on('click', function () {
     $('#imageContainer').toggleClass('hidden'); // Afficher/masquer l'image
   });
 
@@ -78,7 +77,7 @@ $(document).ready(function () {
 
     if (ville) {
       // On attend 500ms après la dernière frappe avant d'appeler la fonction fetchWeather
-      timeout = setTimeout(function() {
+      timeout = setTimeout(function () {
         // N'appeler fetchWeather que si c'est une nouvelle recherche (i.e., ville n'est pas vide)
         fetchWeather(ville);
       }, 500); // Délai de 500ms
@@ -107,7 +106,7 @@ $(document).ready(function () {
     const md = new MobileDetect(window.navigator.userAgent);
 
     if (md.mobile()) {
-      
+
       // Si mobile, afficher le bouton d'installation (Android ou iOS)
       if (md.is('iOS')) {
         $('#iosbutton').removeClass('hidden').show();
