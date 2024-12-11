@@ -580,24 +580,8 @@ video {
   left: 12rem;
 }
 
-.top-10{
-  top: 2.5rem;
-}
-
-.left-4{
-  left: 1rem;
-}
-
-.left-44{
-  left: 11rem;
-}
-
 .top-2{
   top: 0.5rem;
-}
-
-.top-3{
-  top: 0.75rem;
 }
 
 .m-4{
@@ -646,8 +630,8 @@ video {
   margin-top: 2rem;
 }
 
-.mt-9{
-  margin-top: 2.25rem;
+.mt-10{
+  margin-top: 2.5rem;
 }
 
 .box-border{
