@@ -30,6 +30,9 @@ $(document).ready(function () {
 
         // Mise à jour du nom de la ville
         $('#villeNom').text(`Météo à : ${data.location.name}`);
+        console.log(data)
+
+        $('#pays').text(`Pays: ${data.location.country}`)
 
         // Mise à jour des prévisions pour les jours suivants
         const forecast = data.forecast.forecastday;
